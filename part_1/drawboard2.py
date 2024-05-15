@@ -37,16 +37,21 @@ class OnePixel:
         self.canvas.tag_bind(self.id, "<ButtonPress-1>", self.set_color)
         self.row = pixel_row
         self.col = pixel_col
+        self.color = 'white'
 
     def set_color(self, event=None):
-
-        self.canvas.itemconfigure(self.id, fill='black')
+        if self.color == 'white':
+            self.canvas.itemconfigure(self.id, fill='black')
+            self.color = 'black'
+        else:
+            self.canvas.itemconfigure(self.id, fill='white')
+            self.color = 'white'
 
 
 for row in range(grid_len):
     for col in range(grid_len):
-        x0 = row * sqsize+3
-        y0 = col * sqsize+3
+        x0 = row * sqsize + 3
+        y0 = col * sqsize + 3
         rect = OnePixel(canvas, row, col,
                         x0, y0, sqsize, 'gray', outline_width)
 
