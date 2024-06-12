@@ -4,6 +4,7 @@ from vcolorpicker import hex2rgb
 from PIL import Image
 import tkinter as tk
 import numpy as np
+from save_img import save_arr_as_png
 
 base_height = 800
 base_width = 600
@@ -16,11 +17,8 @@ color = '#FFFFFF'
 arr = np.zeros([grid_len, grid_len, 3], dtype=np.uint8)
 
 
-def save_arr_as_png():
-    modified_arr = np.rot90(arr, k=1)
-    modified_arr = np.flip(modified_arr, axis=0)
-    image = Image.fromarray(modified_arr)
-    image.save("talpia.png")
+def save():
+    save_arr_as_png(arr, "talpia")
 
 
 window = tk.Tk()
@@ -39,7 +37,7 @@ canvas.place(x=(base_width - canvas_len) / 2,
 
 button3 = tk.Button(base,
                     text='save',
-                    command=save_arr_as_png)
+                    command=save)
 button3.config(width=2, height=1)
 button3.place(x=base_width / 2 - 200, y=700)
 
